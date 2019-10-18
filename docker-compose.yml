@@ -10,7 +10,7 @@ services:
       - mysql
     environment:
       - "DB_PORT=3306"
-      - "DB_HOST=mysql"
+      - "DB_HOST=localhost"
       - "DB_NAME=go-crud-mysql-rest"
       - "DB_PASS=12345"
   

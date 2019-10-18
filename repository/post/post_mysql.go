@@ -22,11 +22,13 @@ func (m *mysqlPostRepo) GetByID(ctx context.Context, id int64) (*models.Post, er
 	query := "Select id, title, content From posts where id=?"
 
 	rows, err := m.fetch(ctx, query, id)
+
 	if err != nil {
 		return nil, err
 	}
 
 	payload := &models.Post{}
+
 	if len(rows) > 0 {
 		payload = rows[0]
 	} else {
@@ -70,6 +72,7 @@ func (m *mysqlPostRepo) Create(ctx context.Context, p *models.Post) (int64, erro
 	query := "Insert posts SET title=?, content=?"
 
 	stmt, err := m.Conn.PrepareContext(ctx, query)
+
 	if err != nil {
 		return -1, err
 	}

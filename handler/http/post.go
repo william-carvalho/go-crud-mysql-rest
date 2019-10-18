@@ -29,9 +29,10 @@ func (p *Post) GetByID(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		respondWithError(w, http.StatusNoContent, "Content not found")
+	} else {
+		respondwithJSON(w, http.StatusOK, payload)
 	}
 
-	respondwithJSON(w, http.StatusOK, payload)
 }
 
 func (p *Post) Fetch(w http.ResponseWriter, r *http.Request) {
@@ -46,11 +47,13 @@ func (p *Post) Create(w http.ResponseWriter, r *http.Request) {
 
 	newID, err := p.repo.Create(r.Context(), &post)
 	fmt.Println(newID)
+	fmt.Println(&post)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Server Error")
+	} else {
+		respondwithJSON(w, http.StatusCreated, map[string]string{"message": "Successfully Created"})
 	}
 
-	respondwithJSON(w, http.StatusCreated, map[string]string{"message": "Successfully Created"})
 }
 
 func (p *Post) Update(w http.ResponseWriter, r *http.Request) {
@@ -61,9 +64,10 @@ func (p *Post) Update(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Server Error")
+	} else {
+		respondwithJSON(w, http.StatusOK, payload)
 	}
 
-	respondwithJSON(w, http.StatusOK, payload)
 }
 
 func (p *Post) Delete(w http.ResponseWriter, r *http.Request) {
@@ -72,9 +76,10 @@ func (p *Post) Delete(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Server Error")
+	} else {
+		respondwithJSON(w, http.StatusMovedPermanently, map[string]string{"message": "Delete Successfully"})
 	}
 
-	respondwithJSON(w, http.StatusMovedPermanently, map[string]string{"message": "Delete Successfully"})
 }
 
 func respondWithError(w http.ResponseWriter, code int, msg string) {

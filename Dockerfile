@@ -1,5 +1,5 @@
  
-FROM alpine
+FROM golang
 
 COPY dist/go-crud-mysql-rest /bin/
 

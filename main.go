@@ -12,12 +12,14 @@ import (
 )
 
 func main() {
-	dbName := os.Getenv("DB_NAME")
-	dbPass := os.Getenv("DB_PASS")
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
+	dbName := "go-crud-mysql-rest"
+	dbPass := "root"
+	dbHost := "127.0.0.1"
+	dbPort := "3306"
 
-	connection, err := driver.ConnectSQL(dbHost, dbPort, "root", dbPass, dbName)
+	connection, err := driver.ConnectSQL(dbHost, dbPort, "go-crud-mysql-rest", dbPass, dbName)
+	fmt.Println("Server listen at : database ")
+	fmt.Println(err)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)

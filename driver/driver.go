@@ -25,6 +25,7 @@ func ConnectSQL(host, port, uname, pass, dbname string) (*DB, error) {
 		dbname,
 	)
 	d, err := sql.Open("mysql", dbSource)
+	fmt.Println(" data base ", dbSource)
 	if err != nil {
 		panic(err)
 	}
