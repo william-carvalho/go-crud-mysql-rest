@@ -18,7 +18,7 @@ type mysqlPostRepo struct {
 	Conn *sql.DB
 }
 
-func (m *mysqlPostRepo) getByID(ctx context.Context, id int64) (*models.Post, error) {
+func (m *mysqlPostRepo) GetByID(ctx context.Context, id int64) (*models.Post, error) {
 	query := "Select id, title, content From posts where id=?"
 
 	rows, err := m.fetch(ctx, query, id)
