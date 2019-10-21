@@ -22,7 +22,7 @@ then
     sudo cp wrk /usr/local/bin
 then
 
-    node app.js
+    go run main.go
 
 then
 
