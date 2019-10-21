@@ -41,7 +41,7 @@ func main() {
 
 func postRouter(pHandler *ph.Post) http.Handler {
 	r := chi.NewRouter()
-	r.Get("/{id:[0-9]+}", pHandler.GetByID)
+	r.Get("/{id:[0-9]+}", pHandler.getByID)
 	r.Get("/", pHandler.Fetch)
 	r.Post("/", pHandler.Create)
 	r.Put("/{id:[0-9]+}", pHandler.Update)

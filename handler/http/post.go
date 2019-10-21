@@ -23,9 +23,9 @@ type Post struct {
 	repo repository.PostRepo
 }
 
-func (p *Post) GetByID(w http.ResponseWriter, r *http.Request) {
+func (p *Post) getByID(w http.ResponseWriter, r *http.Request) {
 	id, _ := strconv.Atoi(chi.URLParam(r, "id"))
-	payload, err := p.repo.GetByID(r.Context(), int64(id))
+	payload, err := p.repo.getByID(r.Context(), int64(id))
 
 	if err != nil {
 		respondWithError(w, http.StatusNoContent, "Content not found")
